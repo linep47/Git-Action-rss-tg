@@ -1,0 +1,29 @@
+name: RSS to Telegram
+on:
+  schedule:
+    - cron: '0 6 * * *' # 这里是cron表达式，每天早上6点推送
+
+jobs:
+  rss-to-telegram:
+    runs-on: ubuntu-latest
+    
+    env:
+      BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+      CHAT_ID: ${{ secrets.CHAT_ID }}
+      FEED_URL: ${{ secrets.FEED_URL }}</b>
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Install Python3
+      run: sudo apt-get update
+           sudo apt-get install python3 -y
+    
+    - name: Install Python Packages
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install feedparser bs4 python-telegram-bot telegraph
+      
+    - name: Run Python Script
+      run: python3 rss-to-telegram.py
