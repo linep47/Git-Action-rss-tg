@@ -1,7 +1,7 @@
 name: RSS to Telegram
 on:
   schedule:
-    - cron: '0 6 * * *' # 这里是cron表达式，每天早上6点推送
+    - cron: '0 0/1 * * *' # 这里是cron表达式，每天早上6点推送
 
 jobs:
   rss-to-telegram:
